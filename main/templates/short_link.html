@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Home{% endblock %}
+{% block page_content %}
+<div class="page-header">
+    <p>Short link: <a href="{{ url_for('redirect_url', hash_url=hash_url) }}">
+        {{ url_for('redirect_url', hash_url=hash_url, _external=True) }}</a><br>
+    Redirects count: {{ count }}</p>
+</div>
+{% endblock %}

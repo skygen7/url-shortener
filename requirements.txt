@@ -1,0 +1,9 @@
+Использованы библиотеки:
+sqlalchemy
+PyYAML
+wtforms
+flask
+
+1. Прописать параметры базы данных (Postgres) в файле config.yaml
+2. Если база данных не создана, запустить database.py
+3. Запустить runserver.py
