@@ -1,7 +1,7 @@
 from flask import request, render_template, redirect, url_for
-from main.database import Urls
+from main.database import Urls, session
 from hashlib import blake2b
-from . import app, session
+from . import app
 from main.forms import NameForm
 
 

@@ -1,7 +1,8 @@
-from sqlalchemy import Text, Integer, Column, create_engine, Sequence
+from sqlalchemy import Text, Integer, Column, create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from settings import load_config
+from main.settings import load_config
 from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
@@ -19,12 +20,14 @@ class Urls(Base):
         self.count = count
 
     def __repr__(self):
-        return "<Urls('%s','%s', '%s')>" % (self.real_url, self.hash_url, self.count)
+        return f"<Urls({self.real_url},{self.hash_url}, {self.count})>"
 
 
-engine = create_engine(load_config())
+engine = create_engine(load_config().get('db_parameters'))
 
 if not database_exists(engine.url):
     create_database(engine.url)
 
 Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+session = Session()
